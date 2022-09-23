@@ -27,45 +27,86 @@ function playerSelection() {
 
 //play game
 //create function that takes playerSelection & computerChoice as parameters
-function playGame(playerSelection, computerChoice) {
-    let gameOutput;
+function playRound(playerSelection, computerChoice) {
     //check combinations to determine winner
     if (playerSelection === 'rock') {
         if (computerChoice === 'rock') {
-            gameOutput = "Tie Game!";
+            return "Tie Game!";
         }
         else if (computerChoice === 'paper') {
-            gameOutput = "You Lose! Paper beats Rock";
+            return "You Lose! Paper beats Rock";
         }
         else if (computerChoice === 'scissors') {
-            gameOutput = "You Win! Rock beats Scissors";
+            return "You Win! Rock beats Scissors";
         }
 
     }
     else if (playerSelection === 'paper') {
         if (computerChoice === 'rock') {
-            gameOutput = "You Win! Paper beats Rock";
+            return "You Win! Paper beats Rock";
         }
         else if (computerChoice === 'paper') {
-            gameOutput = "Tie Game!";
+            return "Tie Game!";
         }
         else if (computerChoice === 'scissors') {
-            gameOutput = "You Lose! Scissors beats Paper";
+            return "You Lose! Scissors beats Paper";
         }
     }
     else if (playerSelection === 'scissors') {
         if (computerChoice === 'rock') {
-            gameOutput = "You Lose! Rock beats Scissors";
+            return "You Lose! Rock beats Scissors";
         }
         else if (computerChoice === 'paper') {
-            gameOutput = "You Win! Scissors beats Paper";
+            return "You Win! Scissors beats Paper";
         }
         else if (computerChoice === 'scissors') {
-            gameOutput = "Tie Game!";
+            return "Tie Game!";
         }
     }
 
     //return string containing winner
     return gameOutput;
 }
-    
+
+//create game function
+function game() {
+//create 3 variables called playerScore, computerScore & tiedScore to keep count of scores
+    let playerScore = 0;
+    let computerScore = 0;
+    let tiedScore = 0;
+    let returnStatement = "";
+
+    //create loop to play 5 games
+    for (let i = 0; i < 5; i++) {
+        returnStatement = playRound(playerSelection(), getComputerChoice());
+
+        if (returnStatement.includes("Win")) {
+            playerScore += 1;
+        }
+        else if (returnStatement.includes("Lose")) {
+            computerScore += 1;
+        }
+        else {
+            tiedScore += 1;
+        }
+
+        console.log(returnStatement);
+    }
+
+    //return scores
+    console.log(getScores(playerScore, computerScore, tiedScore));
+}
+
+function getScores(playerScore, computerScore, tiedScore) {
+    if (playerScore > computerScore) {
+        return `You Won! ${playerScore} wins vs ${computerScore} and there was ${tiedScore} tied games.`;
+    }
+
+    else if (playerScore < computerScore) {
+        return `You Lost! ${playerScore} wins vs ${computerScore} and there was ${tiedScore} tied games.`;
+    }
+
+    else if (tiedScore > computerScore && tiedScore > playerScore) {
+        return `Tie Game! You won ${playerScore} games, computer won ${computerScore} and there were ${tiedScore} tied games.`;
+    }
+}
