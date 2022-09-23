@@ -7,9 +7,9 @@ function getComputerChoice() {
     //generate random number between 0&2 (to be used to select option from array)
     let arrayPosition = Math.floor(Math.random() * 3);
     //select option from array into variable
-    let compChoice = choices[arrayPosition];
+    let computerChoice = choices[arrayPosition];
     //return option
-    return compChoice;
+    return computerChoice.toLowerCase();
 }
 
 //player choice
@@ -26,3 +26,46 @@ function playerSelection() {
 }
 
 //play game
+//create function that takes playerSelection & computerChoice as parameters
+function playGame(playerSelection, computerChoice) {
+    let gameOutput;
+    //check combinations to determine winner
+    if (playerSelection === 'rock') {
+        if (computerChoice === 'rock') {
+            gameOutput = "Tie Game!";
+        }
+        else if (computerChoice === 'paper') {
+            gameOutput = "You Lose! Paper beats Rock";
+        }
+        else if (computerChoice === 'scissors') {
+            gameOutput = "You Win! Rock beats Scissors";
+        }
+
+    }
+    else if (playerSelection === 'paper') {
+        if (computerChoice === 'rock') {
+            gameOutput = "You Win! Paper beats Rock";
+        }
+        else if (computerChoice === 'paper') {
+            gameOutput = "Tie Game!";
+        }
+        else if (computerChoice === 'scissors') {
+            gameOutput = "You Lose! Scissors beats Paper";
+        }
+    }
+    else if (playerSelection === 'scissors') {
+        if (computerChoice === 'rock') {
+            gameOutput = "You Lose! Rock beats Scissors";
+        }
+        else if (computerChoice === 'paper') {
+            gameOutput = "You Win! Scissors beats Paper";
+        }
+        else if (computerChoice === 'scissors') {
+            gameOutput = "Tie Game!";
+        }
+    }
+
+    //return string containing winner
+    return gameOutput;
+}
+    
