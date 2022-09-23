@@ -11,4 +11,18 @@ function getComputerChoice() {
     //return option
     return compChoice;
 }
-   
+
+//player choice
+//create function called playerSelection
+function playerSelection() {
+    //declare variable called playerSelection to store players selection
+    let playerSelection;
+    //ask player to select (type) one of Rock, Paper or Scissors and store it in playerSelection variable
+    playerSelection = prompt("Please select Rock, Paper or Scissors:");
+    //convert playerSelection variable to lower case
+    playerSelection = playerSelection.toLowerCase();
+    //return playerSelection
+    return playerSelection;
+}
+
+//play game
